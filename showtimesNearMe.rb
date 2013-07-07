@@ -1,9 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-#doc = Nokogiri::HTML(open("http://www.google.com/movies?near=11368'"))
 doc = Nokogiri::HTML(open("movDump.htm"))
-
 output = File.open("output.txt", "w")
 
 doc.css("#movie_results .movie_results .theater").each do |theater|

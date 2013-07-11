@@ -1,13 +1,10 @@
 require 'open-uri'
 require 'nokogiri'
-
 doc = Nokogiri::HTML(open("movDump.htm"))
 output = File.open("output.txt", "w")
-
 doc.css("#movie_results .movie_results .theater").each do |theater|
 	output.write("-------------------\n")
-	output.write(theater.css(".desc .name a").text() + "\n")
-	
+	output.write(theater.css(".desc .name a").text() + "(" + theater.css(".info")[0].text() + ")" + "\n")
 	def printTimes(location, side, out)
 		location.css(".showtimes .show_" + side + " .movie").each do |mov|
 			out.write(mov.css(".name").text() + ": ")
@@ -22,7 +19,6 @@ doc.css("#movie_results .movie_results .theater").each do |theater|
 			out.write("\n")
 		end
 	end
-	
 	printTimes(theater, 'left', output)
 	printTimes(theater, 'right', output)
 end

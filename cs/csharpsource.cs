@@ -58,7 +58,7 @@ namespace request
 
         static void Main(string[] args)
         {        
-            WebRequest reqObj = WebRequest.Create("C:\\Users\\Edd\\Desktop\\LOOKUPONMYWORKS\\moviesnearme\\movDump.htm");
+            WebRequest reqObj = WebRequest.Create("movDump.htm");
             Stream streamObj = reqObj.GetResponse().GetResponseStream();
             string data = (new StreamReader(streamObj)).ReadToEnd();
             CQ lol = CQ.Create(data);
